@@ -1,6 +1,6 @@
 *********************************************
 * Title: CHAT Safety and Effectiveness
-* Purpose: Sensitivity anallyses
+* Purpose: Sensitivity analyses
 * Created: 9/8/23
 * Last updated: 1/23/24
 * Created by: Leah
@@ -53,6 +53,13 @@ mi estimate: logistic seq2fedhosp `reglist' if exclude == 0
 est sto edvisit
 mimrgns, post expression(exp(predict(xb))/(1+exp(predict(xb))))	
 est restore edvisit
+mimrgns i.async, post expression(exp(predict(xb))/(1+exp(predict(xb))))	
+
+*MARE definition
+mi estimate, esampvaryok errorok: logistic nointnomed `reglist' if exclude == 0 
+est sto sens3
+mimrgns, post expression(exp(predict(xb))/(1+exp(predict(xb))))	
+est resto sens3
 mimrgns i.async, post expression(exp(predict(xb))/(1+exp(predict(xb))))	
 
 capture log c
